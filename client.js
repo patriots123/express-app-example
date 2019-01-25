@@ -4,7 +4,7 @@ var shoppingItemTemplate = (
       '<p><span class="shopping-item js-shopping-item-name"></span></p>' +
       '<div class="shopping-item-controls">' +
         '<button class="js-shopping-item-toggle">' +
-          '<span class="button-label">check</span>' +
+          '<span class="button-label">darshan is not cool</span>' +
         '</button>' +
         '<button class="js-shopping-item-delete">' +
           '<span class="button-label">delete</span>' +
@@ -12,7 +12,7 @@ var shoppingItemTemplate = (
       '</div>' +
     '</li>'
   );
-  
+
   var recipeTemplate = (
     '<div class="recipe js-recipe">' +
       '<h3 class="js-recipe-name"><h3>' +
@@ -26,12 +26,12 @@ var shoppingItemTemplate = (
       '</div>' +
     '</div>'
   );
-  
-  
+
+
   var RECIPES_URL = '/recipes';
   var SHOPPING_LIST_URL = '/shopping-list';
-  
-  
+
+
   function getAndDisplayRecipes() {
     console.log('Retrieving recipes')
     $.getJSON(RECIPES_URL, function(recipes) {
@@ -49,7 +49,7 @@ var shoppingItemTemplate = (
       $('.js-recipes').html(recipesElement)
     });
   }
-  
+
   function getAndDisplayShoppingList() {
     console.log('Retrieving shopping list');
     $.getJSON(SHOPPING_LIST_URL, function(items) {
@@ -68,7 +68,7 @@ var shoppingItemTemplate = (
       $('.js-shopping-list').html(itemElements);
     });
   }
-  
+
   function addRecipe(recipe) {
     console.log('Adding recipe: ' + recipe);
     $.ajax({
@@ -82,7 +82,7 @@ var shoppingItemTemplate = (
       contentType: 'application/json'
     });
   }
-  
+
   function addShoppingItem(item) {
     console.log('Adding shopping item: ' + item);
     $.ajax({
@@ -96,7 +96,7 @@ var shoppingItemTemplate = (
       contentType: 'application/json'
     });
   }
-  
+
   function deleteRecipe(recipeId) {
     console.log('Deleting recipe `' + recipeId + '`');
     $.ajax({
@@ -105,7 +105,7 @@ var shoppingItemTemplate = (
       success: getAndDisplayRecipes
     });
   }
-  
+
   function deleteShoppingItem(itemId) {
     console.log('Deleting shopping item `' + itemId + '`');
     $.ajax({
@@ -114,7 +114,7 @@ var shoppingItemTemplate = (
       success: getAndDisplayShoppingList
     });
   }
-  
+
   function updateRecipe(recipe) {
     console.log('Updating recipe `' + recipe.id + '`');
     $.ajax({
@@ -126,7 +126,7 @@ var shoppingItemTemplate = (
       }
     });
   }
-  
+
   function updateShoppingListitem(item) {
     console.log('Updating shopping list item `' + item.id + '`');
     $.ajax({
@@ -140,8 +140,8 @@ var shoppingItemTemplate = (
       contentType: 'application/json'
     });
   }
-  
-  
+
+
   function handleRecipeAdd() {
     $('#js-recipe-form').submit(function(e) {
       e.preventDefault();
@@ -155,9 +155,9 @@ var shoppingItemTemplate = (
       });
     });
   }
-  
+
   function handleShoppingListAdd() {
-  
+
     $('#js-shopping-list-form').submit(function(e) {
       e.preventDefault();
       addShoppingItem({
@@ -165,9 +165,9 @@ var shoppingItemTemplate = (
         checked: false
       });
     });
-  
+
   }
-  
+
   function handleRecipeDelete() {
     $('.js-recipes').on('click', '.js-recipe-delete', function(e) {
       e.preventDefault();
@@ -175,7 +175,7 @@ var shoppingItemTemplate = (
         $(e.currentTarget).closest('.js-recipe').attr('id'));
     });
   }
-  
+
   function handleShoppingListDelete() {
     $('.js-shopping-list').on('click', '.js-shopping-item-delete', function(e) {
       e.preventDefault();
@@ -183,12 +183,12 @@ var shoppingItemTemplate = (
         $(e.currentTarget).closest('.js-shopping-item').attr('id'));
     });
   }
-  
+
   function handleShoppingCheckedToggle() {
     $('.js-shopping-list').on('click', '.js-shopping-item-toggle', function(e) {
       e.preventDefault();
       var element = $(e.currentTarget).closest('.js-shopping-item');
-  
+
       var item = {
         id: element.attr('id'),
         checked: !JSON.parse(element.attr('data-checked')),
@@ -197,13 +197,13 @@ var shoppingItemTemplate = (
       updateShoppingListitem(item);
     });
   }
-  
+
   $(function() {
     getAndDisplayShoppingList();
     handleShoppingListAdd();
     handleShoppingListDelete();
     handleShoppingCheckedToggle();
-  
+
     getAndDisplayRecipes();
     handleRecipeAdd();
     handleRecipeDelete();
